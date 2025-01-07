@@ -1,5 +1,7 @@
 package com.ege.scrabble.service;
 
+import com.ege.scrabble.repository.WordRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,9 +9,12 @@ import java.util.Map;
 
 @Service
 public class GameService {
+    @Autowired
+    WordRepository wordRepository;
+
     Map<String, Integer> letterValues;
 
-    public void addLetterValues() {
+    public void initLetterValues() {
         letterValues = new HashMap<>() {{
             put("E", 1);
             put("A", 1);

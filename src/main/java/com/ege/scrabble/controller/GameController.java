@@ -13,7 +13,7 @@ public class GameController {
 
     @PostMapping("/api/scrabble/calculate")
     public int calculateWord(@RequestParam String word) {
-        gameService.addLetterValues();
+        gameService.initLetterValues();
         return gameService.calculateWord(word);
     }
 }
