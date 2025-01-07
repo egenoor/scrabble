@@ -13,15 +13,15 @@ import java.util.List;
 @Service
 public class FileService {
     @Value(("${dictionary.path}"))
-    static String dictionaryPath;
+    String dictionaryPath;
 
-    public static List<String> readFileInList()
+    public List<String> readFileInList()
     {
         List<String> lines = Collections.emptyList();
 
         try {
             lines = Files.readAllLines(
-                    Paths.get(FileService.dictionaryPath),
+                    Paths.get(dictionaryPath),
                     StandardCharsets.UTF_8);
         } catch(IOException e) {
             e.printStackTrace();
