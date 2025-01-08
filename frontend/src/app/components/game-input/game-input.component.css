@@ -1,0 +1,12 @@
+input {
+  border: 1px solid #D6D2E1;
+  width: Fixed (478px)px;
+  padding: 8px 12px 8px 12px;
+  border-radius: 6px 0px 0px 0px;
+}
+
+.input-btn {
+  background-color: #B2DDFF;
+  color: #175CD3;
+  font-weight: 500;
+}
