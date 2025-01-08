@@ -1,0 +1,17 @@
+input {
+  border: 1px solid #D6D2E1;
+
+  &:hover, &:active {
+    border: 1px solid #c7c2d3
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.input-btn {
+  background-color: #B2DDFF;
+  color: #175CD3;
+  font-weight: 500;
+}

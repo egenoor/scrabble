@@ -1,5 +1,6 @@
 package com.ege.scrabble.controller;
 
+import com.ege.scrabble.exception.ValidationException;
 import com.ege.scrabble.service.GameService;
 import com.ege.scrabble.service.WordService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class GameController {
     WordService wordService;
 
     @PostMapping("/api/scrabble/calculate")
-    public int calculateWord(@RequestParam String word) throws Exception {
+    public int calculateWord(@RequestParam String word) throws ValidationException {
         gameService.initLetterValues();
         return gameService.calculateWord(word);
     }
