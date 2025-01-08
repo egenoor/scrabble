@@ -19,14 +19,12 @@ public class ScrabbleApplication {
 
 	@PostConstruct
 	public void initWordDb() {
-		wordService.clearDatabase();
 		List<String> wordList;
 		wordList = fileService.readFileInList();
 		wordService.addDictionaryWordsToDb(wordList);
 	}
 
 	public static void main(String[] args) {
-
 		SpringApplication.run(ScrabbleApplication.class, args);
 	}
 

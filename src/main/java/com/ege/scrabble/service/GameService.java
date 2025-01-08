@@ -1,16 +1,16 @@
 package com.ege.scrabble.service;
 
-import com.ege.scrabble.repository.WordRepository;
+import com.ege.scrabble.entity.Word;
+import com.ege.scrabble.repository.ScrabbleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
-
 @Service
 public class GameService {
     @Autowired
-    WordRepository wordRepository;
+    ScrabbleRepository scrabbleRepository;
 
     Map<String, Integer> letterValues;
 
@@ -45,15 +45,20 @@ public class GameService {
         }};
     }
 
-    public int calculateWord(String word) {
+    public int calculateWord(String word) throws Exception {
         int score = 0;
-        String[] splitWord = word.split("");
+        if (scrabbleRepository.existsByWord(word)) {
+            String[] splitWord = word.split("");
 
-        for(String c : splitWord) {
-            //TODO: check if word exists in dictionary
-            if (letterValues.containsKey(c.toUpperCase())) {
-                score += letterValues.get(c.toUpperCase());
+            for(String c : splitWord) {
+                if (letterValues.containsKey(c.toUpperCase())) {
+                    score += letterValues.get(c.toUpperCase());
+                }
             }
+            Word wordToSave = new Word(word);
+            scrabbleRepository.save(wordToSave);
+        } else {
+            throw new Exception("Word does not exist in dictionary");
         }
 
         return score;
