@@ -1,12 +1,12 @@
 import { Component } from '@angular/core'
-import { ScrabbleViewComponent } from "./views/scrabble-view/scrabble-view.component"
+import { RouterOutlet } from '@angular/router'
 
 @Component({
   selector: 'app-root',
-  imports: [ScrabbleViewComponent],
+  imports: [ RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'frontend';
+  title = 'Scrabble';
 }

@@ -1,9 +1,23 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http'
+import { Injectable } from '@angular/core'
+import { Observable } from 'rxjs'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScrabbleService {
 
-  constructor() { }
+  private readonly baseUrl = 'http://localhost:8080/api/scrabble'
+
+  constructor( private http: HttpClient ) {}
+
+  calculatePoints(word: string): Observable<number> {
+    const url = this.baseUrl + '/calculate';
+    return this.http.post<number>(url, null, { params: { word } } );
+  }
+
+  addNewWord(word: string): Observable<void> {
+    const url = this.baseUrl + '/add';
+    return this.http.post<void>(url, null, { params: { word } } );
+  }
 }

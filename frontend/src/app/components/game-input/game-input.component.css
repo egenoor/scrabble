@@ -1,8 +1,13 @@
 input {
   border: 1px solid #D6D2E1;
-  width: Fixed (478px)px;
-  padding: 8px 12px 8px 12px;
-  border-radius: 6px 0px 0px 0px;
+
+  &:hover, &:active {
+    border: 1px solid #c7c2d3
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
 }
 
 .input-btn {
