@@ -14,4 +14,12 @@ input {
   background-color: #B2DDFF;
   color: #175CD3;
   font-weight: 500;
+
+  &:hover {
+    background-color: #bfe3ff;
+  }
+}
+
+.error-msg {
+  color: #F97066;
 }

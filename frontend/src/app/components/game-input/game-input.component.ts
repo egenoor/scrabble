@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { ScrabbleService } from '../../services/scrabble.service'
+import { ErrorMessage } from '../common/types/response.type'
 
 @Component({
   selector: 'app-game-input',
@@ -12,11 +13,14 @@ export class GameInputComponent {
   constructor(private scrabbleService: ScrabbleService){}
   word = "";
   points = 0
-  calculateErrorMsg = "";
+  errorMsg = "";
 
   calculatePoints() {
-    this.scrabbleService.calculatePoints(this.word).pipe().subscribe((response) => {
-      this.points += response;
+    this.errorMsg = "";
+    this.scrabbleService.calculatePoints(this.word)
+    .subscribe({
+      next: res => {this.points += res},
+      error: (err: ErrorMessage) => this.errorMsg = err.error.message
     })
   }
 }

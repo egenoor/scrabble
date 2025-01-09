@@ -1,7 +1,7 @@
 package com.ege.scrabble.service;
 
 import com.ege.scrabble.entity.Word;
-import com.ege.scrabble.exception.ValidationException;
+import com.ege.scrabble.exception.NotFoundException;
 import com.ege.scrabble.repository.ScrabbleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,7 +46,7 @@ public class GameService {
         }};
     }
 
-    public int calculateWord(String word) throws ValidationException {
+    public int calculateWord(String word) throws NotFoundException {
         int score = 0;
         if (scrabbleRepository.existsByWord(word)) {
             String[] splitWord = word.split("");
@@ -59,7 +59,7 @@ public class GameService {
             Word wordToSave = new Word(word);
             scrabbleRepository.save(wordToSave);
         } else {
-            throw new ValidationException("Word does not exist in dictionary");
+            throw new NotFoundException("Word does not exist in dictionary");
         }
 
         return score;
