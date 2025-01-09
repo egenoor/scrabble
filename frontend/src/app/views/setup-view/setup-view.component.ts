@@ -5,8 +5,7 @@ import { WordInputComponent } from "../../components/word-input/word-input.compo
 @Component({
   selector: 'app-setup-view',
   imports: [BackButtonComponent, WordInputComponent],
-  templateUrl: './setup-view.component.html',
-  styleUrl: './setup-view.component.css'
+  templateUrl: './setup-view.component.html'
 })
 export class SetupViewComponent {
 

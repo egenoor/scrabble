@@ -14,22 +14,26 @@ public class WordService {
     @Autowired
     ScrabbleRepository scrabbleRepository;
 
+    public Word createWord(String word) {
+        Word newWord = new Word();
+        newWord.setWord(word);
+        return newWord;
+    }
+
     public void addDictionaryWordsToDb(List<String> wordList) {
         scrabbleRepository.deleteAll();
         ArrayList<Word> wordsEntities = new ArrayList<Word>();
         for (String word : wordList) {
-            Word wordToSave = new Word();
-            wordToSave.setWord(word);
-            wordsEntities.add(wordToSave);
+            wordsEntities.add(createWord(word));
         }
         scrabbleRepository.saveAll(wordsEntities);
     }
 
     public void addWordToDictionary(String word) throws DuplicateException {
-        if (scrabbleRepository.existsByWord(word)) {
+        if (scrabbleRepository.existsByWordIgnoreCase(word)) {
             throw new DuplicateException("Word already exists in dictionary");
         }
-        Word wordToAdd = new Word(word);
+        Word wordToAdd = new Word(word.toLowerCase());
         scrabbleRepository.save(wordToAdd);
     }
 }

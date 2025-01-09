@@ -6,8 +6,7 @@ import { ErrorMessage } from '../common/types/response.type'
 @Component({
   selector: 'app-word-input',
   imports: [FormsModule],
-  templateUrl: './word-input.component.html',
-  styleUrl: './word-input.component.css'
+  templateUrl: './word-input.component.html'
 })
 export class WordInputComponent {
   constructor(private scrabbleService: ScrabbleService){}
@@ -16,6 +15,7 @@ export class WordInputComponent {
   successfulRequest = false;
 
   addNewWord() {
+    this.errorMsg = "";
     this.scrabbleService.addNewWord(this.word)
     .subscribe({
       next: _res => {

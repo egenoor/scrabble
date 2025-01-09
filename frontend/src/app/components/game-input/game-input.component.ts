@@ -6,8 +6,7 @@ import { ErrorMessage } from '../common/types/response.type'
 @Component({
   selector: 'app-game-input',
   imports: [FormsModule],
-  templateUrl: './game-input.component.html',
-  styleUrl: './game-input.component.css'
+  templateUrl: './game-input.component.html'
 })
 export class GameInputComponent {
   constructor(private scrabbleService: ScrabbleService){}

@@ -6,7 +6,6 @@ import { GameInputComponent } from "../../components/game-input/game-input.compo
   selector: 'app-scrabble-view',
   imports: [GameInputComponent, BackButtonComponent],
   templateUrl: './scrabble-view.component.html',
-  styleUrl: './scrabble-view.component.css'
 })
 export class ScrabbleViewComponent {
 

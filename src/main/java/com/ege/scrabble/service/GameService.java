@@ -48,7 +48,7 @@ public class GameService {
 
     public int calculateWord(String word) throws NotFoundException {
         int score = 0;
-        if (scrabbleRepository.existsByWord(word)) {
+        if (scrabbleRepository.existsByWordIgnoreCase(word)) {
             String[] splitWord = word.split("");
 
             for(String c : splitWord) {
