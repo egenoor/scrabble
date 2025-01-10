@@ -13,7 +13,7 @@ public class GameService {
     @Autowired
     ScrabbleRepository scrabbleRepository;
 
-    Map<String, Integer> letterValues;
+    public Map<String, Integer> letterValues;
 
     public void initLetterValues() {
         letterValues = new HashMap<>() {{
