@@ -7,7 +7,7 @@ import { Observable } from 'rxjs'
 })
 export class ScrabbleService {
 
-  private readonly baseUrl = 'http://localhost:8080/api/scrabble'
+  private readonly baseUrl = '/api/scrabble'
 
   constructor( private http: HttpClient ) {}
 

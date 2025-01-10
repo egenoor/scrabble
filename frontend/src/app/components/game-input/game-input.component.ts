@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { ScrabbleService } from '../../services/scrabble.service'
-import { ErrorMessage } from '../common/types/response.type'
+import { ServiceError } from '../common/errors/service.error'
 
 @Component({
   selector: 'app-game-input',
@@ -19,7 +19,9 @@ export class GameInputComponent {
     this.scrabbleService.calculatePoints(this.word)
     .subscribe({
       next: res => {this.points += res},
-      error: (err: ErrorMessage) => this.errorMsg = err.error.message
+      error: (err: ServiceError) => {
+        this.errorMsg = (err as ServiceError)?.error?.message ?? (err as Error)?.message ?? 'Something went wrong'
+      }
     })
   }
 }

@@ -7,6 +7,13 @@
     <h1 class="text-3xl font-bold">Add new words to the game</h1>
   </div>
   <div class="flex justify-center my-10">
-    <app-word-input />
+    @if (successfulRequest) {
+      <div class="success flex justify-center font-medium p-2">Word was added to dictionary</div>
+    }
+    @if (errorMsg !== "") {
+      <div class="error-msg flex justify-center font-medium p-2">{{errorMsg}}</div>
+    }
+    <input type="text" name="word" class="mr-5 p-2 px-2 py-3 rounded-md" [(ngModel)]="word"/>
+    <button class="input-btn px-4 py-3 rounded-md" (click)="addNewWord()">Save</button>
   </div>
 </div>
