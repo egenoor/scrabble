@@ -13,18 +13,18 @@ export class SetupViewComponent {
   constructor(private scrabbleService: ScrabbleService){}
   word = "";
   errorMsg = "";
-  successfulRequest = false;
+  isSuccessfulRequest = false;
 
   addNewWord() {
-    this.errorMsg = "";
     this.scrabbleService.addNewWord(this.word)
     .subscribe({
       next: _res => {
+        this.errorMsg = "";
         this.word = "";
-        this.successfulRequest = true;
+        this.isSuccessfulRequest = true;
       },
-      error: (err: unknown) => {
-        this.errorMsg = (err as ServiceError)?.error?.message ?? (err as Error)?.message
+      error: (err: ServiceError) => {
+        this.errorMsg = err.message
       }
     })
   }

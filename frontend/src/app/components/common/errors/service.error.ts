@@ -1,11 +1,10 @@
 export class ServiceError extends Error {
-  error: {
-    message: string
-  } = {
-    message: ""
-  }
-  constructor(message: string) {
+  statusCode: number
+  errorCode: string
+
+  constructor(message: string, statusCode: number, errorCode: string) {
     super(message)
-    this.error.message = message
+    this.statusCode = statusCode
+    this.errorCode = errorCode
   }
 }

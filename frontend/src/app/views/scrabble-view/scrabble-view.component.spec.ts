@@ -8,7 +8,6 @@ import { ScrabbleService } from '../../services/scrabble.service'
 import { ScrabbleViewComponent } from './scrabble-view.component'
 
 
-
 describe('ScrabbleViewComponent', () => {
   @Component({selector: 'app-back-button', template: ''})
   class BackButtonStubComponent {}

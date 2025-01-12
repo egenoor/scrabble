@@ -20,11 +20,10 @@ constructor(private scrabbleService: ScrabbleService){}
     this.scrabbleService.calculatePoints(this.word)
     .subscribe({
       next: res => {
-        this.points += res
+        this.points = res
       },
-      error: (err: unknown) => {
-        console.error((err as ServiceError)?.error)
-        this.errorMsg = (err as ServiceError)?.error?.message ?? (err as Error)?.message ?? 'Something went wrong'
+      error: (err: ServiceError) => {
+        this.errorMsg = err.message
       }
     })
   }

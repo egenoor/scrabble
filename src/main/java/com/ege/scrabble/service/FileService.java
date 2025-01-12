@@ -18,7 +18,6 @@ public class FileService {
     public List<String> readFileInList()
     {
         List<String> lines = Collections.emptyList();
-
         try {
             lines = Files.readAllLines(
                     Paths.get(dictionaryPath),

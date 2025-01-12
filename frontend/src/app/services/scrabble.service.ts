@@ -12,12 +12,12 @@ export class ScrabbleService {
   constructor( private http: HttpClient ) {}
 
   calculatePoints(word: string): Observable<number> {
-    const url = this.baseUrl + '/calculate';
-    return this.http.post<number>(url, null, { params: { word } } );
+    const url = this.baseUrl + '/calculate-score';
+    return this.http.post<number>(url, { word });
   }
 
   addNewWord(word: string): Observable<void> {
-    const url = this.baseUrl + '/add';
-    return this.http.post<void>(url, null, { params: { word } } );
+    const url = this.baseUrl + '/word';
+    return this.http.post<void>(url, { word });
   }
 }
