@@ -12,15 +12,15 @@ Node.js v22.12.0
 
 Angular v19
 
-## Install packages
+## Install frontend packages
 ```bash
-cd ../frontend
+cd frontend
 npm ci
 ```
 
 ## Frontend dev server with hot-reloading
 ```bash
-cd ../frontend
+cd frontend
 npm start
 ```
 
@@ -44,7 +44,7 @@ npm start
 ### Frontend
 
 ```bash
-cd ../frontend
+cd frontend
 ```
 
 ```bash
