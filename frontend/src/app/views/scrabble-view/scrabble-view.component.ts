@@ -19,6 +19,7 @@ export class ScrabbleViewComponent {
     if (isNonNumericString(this.word) || this.word === '') {
       this.errorMsg = '';
     } else {
+      this.points = 0;
       this.errorMsg = 'Word may only contain letters';
     }
   }
