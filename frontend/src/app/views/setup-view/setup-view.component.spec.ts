@@ -32,7 +32,7 @@ describe('SetupViewComponent', () => {
   function resetState() {
     setupViewComponent.word = '';
     setupViewComponent.errorMsg = '';
-    setupViewComponent.isSuccessfulRequest = false;
+    setupViewComponent.successMsg = '';
   }
 
   beforeEach(async () => {
@@ -72,9 +72,8 @@ describe('SetupViewComponent', () => {
       req.flush({});
       fixture.detectChanges();
 
-      expect(setupViewComponent.isSuccessfulRequest).toBe(true);
+      expect(setupViewComponent.successMsg).toContain('');
       const successfulMsg = setupViewDOM.querySelector('.success');
-      expect(successfulMsg).toBeTruthy();
       expect(successfulMsg?.textContent).toContain(
         'Word was added to dictionary'
       );
@@ -82,6 +81,16 @@ describe('SetupViewComponent', () => {
   });
 
   describe('failed word creation flow', () => {
+    it('should display errorMsg when special symbol is entered', () => {
+      inputField.value = '!test';
+      inputField.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+      const validationMsg = setupViewDOM.querySelector('.error-msg');
+      expect(validationMsg?.textContent).toContain(
+        'Word may only contain letters'
+      );
+    });
+
     it('should display errorMsg when a known word is submitted', () => {
       const errorResponse = new HttpErrorResponse({
         error: {

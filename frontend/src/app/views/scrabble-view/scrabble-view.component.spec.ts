@@ -76,6 +76,16 @@ describe('ScrabbleViewComponent', () => {
   });
 
   describe('failed calculation flow', () => {
+    it('should display errorMsg when special symbol is entered', () => {
+      inputField.value = '!test';
+      inputField.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+      const validationMsg = scrabbleViewDOM.querySelector('.error-msg');
+      expect(validationMsg?.textContent).toContain(
+        'Word may only contain letters'
+      );
+    });
+
     it('should display errorMsg when an unknown word is submitted', () => {
       const errorResponse = new HttpErrorResponse({
         error: {

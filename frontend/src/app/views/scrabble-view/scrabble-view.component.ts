@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ServiceError } from '../../components/common/errors/service.error';
 import { ScrabbleService } from '../../services/scrabble.service';
+import { isNonNumericString } from '../../util/input.validator';
 
 @Component({
   selector: 'app-scrabble-view',
@@ -13,6 +14,14 @@ export class ScrabbleViewComponent {
   word = '';
   points = 0;
   errorMsg = '';
+
+  onInput() {
+    if (isNonNumericString(this.word) || this.word === '') {
+      this.errorMsg = '';
+    } else {
+      this.errorMsg = 'Word may only contain letters';
+    }
+  }
 
   calculatePoints() {
     this.errorMsg = '';

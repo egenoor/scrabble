@@ -1,4 +1,4 @@
-<div class="text-center">
+<div class="text-center form-group">
   <h1 class="text-3xl font-bold">Try to guess a word</h1>
   <div class="my-10">
     @if (errorMsg !== '') {
@@ -7,15 +7,17 @@
       </div>
     }
     <input
+      class="form-control"
       type="text"
       name="word"
       class="mr-5 p-2 px-2 py-3 rounded-md"
       [(ngModel)]="word"
+      (input)="onInput()"
     />
     <button
       class="input-btn px-4 py-3 rounded-md"
       (click)="calculatePoints()"
-      [disabled]="word === ''"
+      [disabled]='word === "" || errorMsg'
     >
       Guess
     </button>
