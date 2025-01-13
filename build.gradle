@@ -3,6 +3,7 @@ plugins {
 	id 'org.springframework.boot' version '3.4.1'
 	id 'io.spring.dependency-management' version '1.1.7'
 	id 'application'
+	id 'com.github.node-gradle.node' version '3.5.0'
 }
 
 group = 'com.ege'
@@ -33,11 +34,36 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.register('appNpmInstall', NpmTask) {
+	description = "npm install"
+	workingDir = file("${project.projectDir}/frontend")
+	args = ["install"]
+}
+tasks.register('appNpmBuild', NpmTask) {
+	description = "npm run build"
+	workingDir = file("${project.projectDir}/frontend")
+	args = ["run", "build"]
+}
+
+tasks.register('appDeploy', Copy) {
+	from "$projectDir/frontend/dist/frontend/browser/"
+	into "$projectDir/src/main/resources/static"
+}
+
+def isProd = providers.gradleProperty("prod")
+if (isProd.present) {
+	appNpmBuild.dependsOn appNpmInstall
+	appDeploy.dependsOn appNpmBuild
+	processResources.dependsOn appDeploy
+	compileJava.dependsOn processResources
 }
 
 tasks.named('test') {

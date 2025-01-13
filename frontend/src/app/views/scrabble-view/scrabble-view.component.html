@@ -7,17 +7,16 @@
       </div>
     }
     <input
-      class="form-control"
       type="text"
       name="word"
       class="mr-5 p-2 px-2 py-3 rounded-md"
       [(ngModel)]="word"
-      (input)="onInput()"
+      (input)="onWordChange()"
     />
     <button
       class="input-btn px-4 py-3 rounded-md"
       (click)="calculatePoints()"
-      [disabled]='word === "" || errorMsg'
+      [disabled]="word === '' || errorMsg"
     >
       Guess
     </button>

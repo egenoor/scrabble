@@ -15,6 +15,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -57,6 +59,23 @@ public class ScrabbleControllerTests {
         ).andReturn().getResponse();
 
         assertEquals(HttpStatus.OK.value(), response.getStatus());
+    }
+
+    @Test
+    void calculateScoreWithInvalidBody_ThrowsBadRequest() throws Exception {
+        ArrayList<String> invalidValues = new ArrayList<String>();
+        invalidValues.add("{\"word\": \"\"}");
+        invalidValues.add("{\"word\": \"1373H\"}");
+        invalidValues.add("{\"word\": null}");
+        for (String v: invalidValues) {
+            MockHttpServletResponse response = mvc.perform(
+                    MockMvcRequestBuilders
+                            .post("/api/scrabble/calculate-score")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(v)
+            ).andReturn().getResponse();
+            assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatus());
+        }
     }
 
     @Test

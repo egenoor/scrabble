@@ -15,7 +15,7 @@ export class ScrabbleViewComponent {
   points = 0;
   errorMsg = '';
 
-  onInput() {
+  onWordChange() {
     if (isNonNumericString(this.word) || this.word === '') {
       this.errorMsg = '';
     } else {
@@ -31,6 +31,7 @@ export class ScrabbleViewComponent {
       },
       error: (err: ServiceError) => {
         this.errorMsg = err.message;
+        this.points = 0;
       },
     });
   }

@@ -15,7 +15,7 @@ export class SetupViewComponent {
   errorMsg = '';
   successMsg = '';
 
-  onInput() {
+  onWordChange() {
     this.successMsg = '';
     if (isNonNumericString(this.word) || this.word === '') {
       this.errorMsg = '';

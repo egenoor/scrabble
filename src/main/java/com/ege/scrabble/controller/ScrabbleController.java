@@ -5,6 +5,7 @@ import com.ege.scrabble.dto.ScrabbleCalculateScoreRequestBodyDTO;
 import com.ege.scrabble.exception.DuplicateException;
 import com.ege.scrabble.exception.NotFoundException;
 import com.ege.scrabble.service.WordService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,12 +17,12 @@ public class ScrabbleController {
     WordService wordService;
 
     @PostMapping("/api/scrabble/calculate-score")
-    public int calculateScore(@RequestBody ScrabbleCalculateScoreRequestBodyDTO body) throws NotFoundException {
+    public int calculateScore(@RequestBody @Valid ScrabbleCalculateScoreRequestBodyDTO body) throws NotFoundException {
         return wordService.calculateScore(body.getWord());
     }
 
     @PostMapping("/api/scrabble/word")
-    public void addNewWord(@RequestBody ScrabbleAddNewWordRequestBodyDTO body) throws DuplicateException {
+    public void addNewWord(@RequestBody @Valid ScrabbleAddNewWordRequestBodyDTO body) throws DuplicateException {
         wordService.addNewWord(body.getWord());
     }
 }
