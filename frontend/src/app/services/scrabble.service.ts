@@ -1,15 +1,14 @@
-import { HttpClient } from '@angular/common/http'
-import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs'
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ScrabbleService {
+  private readonly baseUrl = '/api/scrabble';
 
-  private readonly baseUrl = '/api/scrabble'
-
-  constructor( private http: HttpClient ) {}
+  constructor(private http: HttpClient) {}
 
   calculatePoints(word: string): Observable<number> {
     const url = this.baseUrl + '/calculate-score';

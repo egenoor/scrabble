@@ -1,6 +1,6 @@
 .play-btn {
-  background-color: #D0F8AB;
-  color: #3B7C0F;
+  background-color: #d0f8ab;
+  color: #3b7c0f;
   font-weight: 500;
 
   &:hover {
@@ -9,8 +9,8 @@
 }
 
 .setup-btn {
-  background-color: #B2DDFF;
-  color: #175CD3;
+  background-color: #b2ddff;
+  color: #175cd3;
   font-weight: 500;
 
   &:hover {
